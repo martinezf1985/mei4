@@ -1,0 +1,30 @@
+.h1{
+    background-color: red;
+text-align: center;
+
+}
+.img{width:  10%;
+    display: block;
+    
+    border-radius: 30px;
+    
+}
+
+.but3{
+    height: 30px;
+    width: 250px; 
+   color: black;
+   
+  background-color:blueviolet;
+ text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.Button{
+    text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+}
