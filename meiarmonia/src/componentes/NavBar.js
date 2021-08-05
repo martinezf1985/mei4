@@ -1,7 +1,8 @@
 
 import { Navbar, Container, Nav, NavDropdown,  } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Icon from './Icon'
+import CartWidget from './CartWidget'
+
 
 const NavBar = () => {
     return (
@@ -9,7 +10,6 @@ const NavBar = () => {
         <div>
             <Navbar bg="light" expand="lg">
   <Container>
-  <Icon/>
     <Navbar.Brand href="#home">MeiEnArmonia</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
@@ -22,11 +22,13 @@ const NavBar = () => {
           <NavDropdown.Item href="#action/3.3">jabones veganos</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href="#action/3.4">linea vegetal</NavDropdown.Item>
-        </NavDropdown>
+        </NavDropdown>      
       </Nav>
     </Navbar.Collapse>
+    <CartWidget/>
   </Container>
 </Navbar>
+
 
    
         </div>

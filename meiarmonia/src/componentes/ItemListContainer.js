@@ -1,16 +1,11 @@
 
-
-
-
 import React from 'react'
 import PropTypes from 'prop-types'
 
- const ItemListContainer = props => {
+const ItemListContainer = props => {
     return (
-        <div style = {{whidth:'150px', height:'150px',  }} >
-            <p>{props.description}</p>
-            <span>{props.user.name}</span>
-            <span>{props.user.carrer}</span>
+        <div>
+            return <h1> { props.greeting } </h1>
         </div>
     )
 }
