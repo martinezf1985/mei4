@@ -4,6 +4,7 @@ import NavBar from '../src/componentes/NavBar'
 import './componentes/Style.css'
 // import Button from './componentes/Button'
 import ItemListContainer from './componentes/ItemListContainer';
+import ItemCount from './componentes/ItemCount';
 
 function App() {
     return (
@@ -20,7 +21,7 @@ function App() {
  
 {/* <CardComponentHooks /> */}
 
-
+<ItemCount/>
 
 {/* <Button/> */}
 
