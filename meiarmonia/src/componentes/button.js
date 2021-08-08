@@ -1,8 +1,8 @@
-export default function Button(props) {
-    return (
-      <button onClick={() => props.cuandohagoClick("hola holaaa")}>
-        {props.text}
-      </button>
-    );
-  }
+// export default function Button(props) {
+//     return (
+//       <button onClick={() => props.onClick("hola holaaa")}>
+//         {props.text}
+//       </button>
+//     );
+//   }
   

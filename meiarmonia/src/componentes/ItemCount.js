@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import Button from "./button";
-
-
   
-const ItemCount = props => {
-    const [count, setCount] = useState(0);
+const ItemCount = ({stock, initial, onAdd}) => {
+    const [count, setCount] = useState(initial);
     return (
-        <div>
+        <div >
             <div>
             <h1>contador: {count}</h1>
-          {props.count2}
-          <Button text="sumar" cuandohagoClick={() => setCount(count + 1)} />
-          <Button text="restar" cuandohagoClick={() => setCount(count - 1)} />
+          {onAdd}
+          <button className='but' text="sumar" onClick={() => count < stock ? setCount(count + 1) : ''} />
+          <button className='but' text="restar" onClick={() => count >= 1? setCount(  count - 1) : ''  } />
             </div>
+
             <div>
-                <Button text="agregar producto" cuandohagoClick={() => setCount(count + 1)} />
+              <button className='but' text="añadir al carrito" onClick={onAdd} />
+                
             </div>
           
         </div>
       );
     }
 ItemCount.propTypes = {
+  
 
 }
 

@@ -1,12 +1,16 @@
 
 import NavBar from '../src/componentes/NavBar'
-// import CardComponentHooks from './componentes/CardComponentHooks'
+
 import './componentes/Style.css'
-// import Button from './componentes/Button'
+
 import ItemListContainer from './componentes/ItemListContainer';
 import ItemCount from './componentes/ItemCount';
 
 function App() {
+  const onAdd= () => {
+    <button text="agregar producto" />
+    console.log("")
+  }
     return (
   <div className="App">
 
@@ -16,14 +20,9 @@ function App() {
   <ItemListContainer greeting="holaaaaa"/>
   </header>
 
-  
   <section className ='section'>
  
-{/* <CardComponentHooks /> */}
-
-<ItemCount/>
-
-{/* <Button/> */}
+<ItemCount stock={10} initial={1} onAdd={onAdd}/>
 
   </section>
 
@@ -31,4 +30,8 @@ function App() {
   );
 }
 
-export default App;
+
+ export default App
+ 
+ 
+ 

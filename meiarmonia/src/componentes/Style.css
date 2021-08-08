@@ -12,23 +12,22 @@ text-align: center;
     
 }
 
-.but3{
+
+/* .App{ background-color: brown;
+
+} */
+
+
+
+
+
+
+
+.but{
     height: 30px;
     width: 250px; 
    color: black;
-   
   background-color:blueviolet;
  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-.Button{
-    text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  
 
 }
-
