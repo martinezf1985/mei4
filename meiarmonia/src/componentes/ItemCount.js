@@ -7,12 +7,12 @@ const ItemCount = ({stock, initial, onAdd}) => {
             <div>
             <h1>contador: {count}</h1>
           {onAdd}
-          <button className='but' text="sumar" onClick={() => count < stock ? setCount(count + 1) : ''} />
-          <button className='but' text="restar" onClick={() => count >= 1? setCount(  count - 1) : ''  } />
+          <button className='but'  onClick={() => count < stock ? setCount(count + 1) : ''}> + </button>
+          <button className='but'  onClick={() => count >= 1? setCount(  count - 1) : ''  } > - </button> 
             </div>
 
             <div>
-              <button className='but' text="añadir al carrito" onClick={onAdd} />
+              <button className='but'  onClick={onAdd}> añadir al carrito </button> 
                 
             </div>
           
