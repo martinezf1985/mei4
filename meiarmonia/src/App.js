@@ -1,10 +1,8 @@
 
 import NavBar from '../src/componentes/NavBar'
-
 import './componentes/Style.css'
-
 import ItemListContainer from './componentes/ItemListContainer';
-import ItemCount from './componentes/ItemCount';
+// import ItemCount from './componentes/ItemCount';
 
 function App() {
   const onAdd= () => {
@@ -22,7 +20,7 @@ function App() {
 
   <section className ='section'>
  
-<ItemCount stock={10} initial={1} onAdd={onAdd}/>
+{/* <ItemCount stock={10} initial={1} onAdd={onAdd}/> */}
 
   </section>
 
