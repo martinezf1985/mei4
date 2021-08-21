@@ -1,9 +1,6 @@
-
-
 import { useState, useEffect } from "react";
 import ItemCount from "./ItemCount";
-import ItemList from "./ItemList";
-
+import ItemDetail from './ItemDetail';
 const itemsToRender = [
   {
     id: 1,
@@ -36,34 +33,41 @@ const itemsToRender = [
   
 ];
 
-const ItemsListContainer = (props) => {
-  const [items, setItems] = useState([]);
+function ItemDetailContainer ()  {
+    const [item, setItem] = useState([]);
+    const [loading, setLoading]= useState(false);
 
-  useEffect(() => {
+const getItem =()=>{
+    setLoading(true)
     new Promise((resolve, reject) => {
-      setTimeout(() => resolve(itemsToRender), 2000);
-    })
-      .then((itemsToRender) => setItems(itemsToRender))
-      .catch((err) => console.log(err));
+        setTimeout(() => resolve(itemsToRender[1]),setLoading(false), 2000);
+      })
+        .then((dataDePromise) => setItem(dataDePromise))
+        .catch((err) => console.log(err));
+}
+  useEffect(() => {
+    getItem()
   }, []);
 
-  return (
-    <div>
-      {/* <h3>{props.greeting}</h3> */}
-
-      {items.length > 0 ? (
-        <ItemList items={items} />
-      ) : (
+if(loading){
+    return(
         <img
-          src={
-            "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" ||
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Dia_2019.svg/84px-Dia_2019.svg.png"
-          }
-        />
-      )}
-    </div>
+        src={
+          "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" ||
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Dia_2019.svg/84px-Dia_2019.svg.png"
+        }
+      />
+     
+
+    )
+}
+
+
+
+  return (
+      <ItemDetail {...item} />
   );
 };
 
-export default ItemsListContainer;
+export default ItemDetailContainer;
 

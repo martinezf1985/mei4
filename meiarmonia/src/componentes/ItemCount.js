@@ -5,8 +5,9 @@ const ItemCount = ({stock, initial, onAdd}) => {
     return (
         <div >
             <div>
-            <h1>contador: {count}</h1>
-                {onAdd}
+              <div>{count} {onAdd} </div>
+            {/* <h1>contador: </h1> */}
+                
               <button className='but'  onClick={() => count < stock ? setCount(count + 1) : ''}> + </button>
               <button className='but'  onClick={() => count >= 1? setCount(  count - 1) : ''  } > - </button> 
             </div>
