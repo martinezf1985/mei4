@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import ItemCount from "./ItemCount";
 import ItemDetail from './ItemDetail';
+import { useParams } from "react-router-dom"; 
+
+
 const itemsToRender = [
   {
     id: 1,
@@ -33,41 +36,62 @@ const itemsToRender = [
   
 ];
 
-function ItemDetailContainer ()  {
-    const [item, setItem] = useState([]);
-    const [loading, setLoading]= useState(false);
+// function ItemDetailContainer ()  {
+//     const [item, setItem] = useState([]);
+//     const [loading, setLoading]= useState(false);
 
-const getItem =()=>{
-    setLoading(true)
-    new Promise((resolve, reject) => {
-        setTimeout(() => resolve(itemsToRender[1]),setLoading(false), 2000);
-      })
-        .then((dataDePromise) => setItem(dataDePromise))
-        .catch((err) => console.log(err));
-}
-  useEffect(() => {
-    getItem()
-  }, []);
+    
+    
 
-if(loading){
-    return(
-        <img
-        src={
-          "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" ||
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Dia_2019.svg/84px-Dia_2019.svg.png"
-        }
-      />
+// const getItem =()=>{
+//     setLoading(true)
+//     new Promise((resolve, reject) => {
+//         setTimeout(() => resolve(itemsToRender[1]),setLoading(false), 2000);
+//       })
+//         .then((dataDePromise) => setItem(dataDePromise))
+//         .catch((err) => console.log(err));
+// }
+//   useEffect(() => {
+//     getItem()
+//   }, []);
+
+// if(loading){
+//     return(
+//         <img
+//         src={
+//           "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" ||
+//           "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Dia_2019.svg/84px-Dia_2019.svg.png"
+//         }
+//       />
      
 
-    )
+//     )
+// }
+
+
+
+//   return (
+//       <ItemDetail {...item} />
+//   );
+// };
+
+function ItemDetailContainer() {
+  const [item, setItem] = useState([]);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    new Promise((resolve, reject) => {
+      setTimeout(
+        () => resolve(itemsToRender.filter((item) => item.id === id)),
+        3000
+      );
+    }).then((data) => setItem(data[0]));
+  }, []);
+
+  console.log("item", item);
+
+  return <ItemDetail {...item} />;
 }
-
-
-
-  return (
-      <ItemDetail {...item} />
-  );
-};
-
 export default ItemDetailContainer;
 

@@ -11,21 +11,33 @@ function App() {
     console.log("")
   }
     return (
-      <div className="App">
+      <BrowserRouter>
+      <NavBar />
+      <Switch>
+        <Route exact path="/">
+          <ItemListContainer />
+        </Route>
+        <Route exact path="/item/:id">
+          <ItemDetailContainer />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+    
+      // <div className="App">
 
-         <header className="App-header">
+      //    <header className="App-header">
  
-          <NavBar/>
+      //     <NavBar/>
           
-         </header>
+      //    </header>
 
-          <section className ='section'>
-          <ItemListContainer greeting="Shop"/>
-          <ItemDetailContainer/>
+      //     <section className ='section'>
+      //     <ItemListContainer greeting="Shop"/>
+      //     <ItemDetailContainer/>
 
-          </section>
+      //     </section>
 
-      </div>
+      // </div>
   );
 }
 
