@@ -4,6 +4,7 @@ import ItemCount from './ItemCount';
 function ItemDetail({ id, title, description, stock, pictureUrl, price }) {
   const [onAdd, setOnAdd]= useState (0);
   const NumberContext = React.createContext();
+  
 
 const onClick=(cantidad)=>{
   setOnAdd(cantidad + onAdd)
