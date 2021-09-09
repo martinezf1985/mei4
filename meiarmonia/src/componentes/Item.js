@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 
 const Item = ({ item }) => {
     return (
@@ -6,7 +6,7 @@ const Item = ({ item }) => {
         <li>Product Num: {item.id}</li>
         <li>{item.title}</li>
         <li>
-          <img src={item.pictureUrl}></img>
+          <img alt={item.description} src={item.pictureUrl}></img>
         </li>
         <li>{item.description}</li>
         <li>$ {item.price}</li>

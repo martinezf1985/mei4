@@ -1,7 +1,6 @@
 
 
 import { useState, useEffect } from "react";
-import ItemCount from "./ItemCount";
 import ItemList from "./ItemList";
 
 const itemsToRender = [
@@ -54,7 +53,7 @@ const ItemsListContainer = (props) => {
       {items.length > 0 ? (
         <ItemList items={items} />
       ) : (
-        <img
+        <img alt='alt'
           src={
             "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" ||
             "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Dia_2019.svg/84px-Dia_2019.svg.png"

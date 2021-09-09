@@ -4,22 +4,28 @@ import ItemCount from './ItemCount';
 function ItemDetail({ id, title, description, stock, pictureUrl, price }) {
   const [onAdd, setOnAdd]= useState (0);
   const NumberContext = React.createContext();
+
+const onClick=(cantidad)=>{
+  setOnAdd(cantidad + onAdd)
+}
+
+
   return (
-    <NumberContext.Provider value={42}>
+    <NumberContext.Provider value={onAdd}>
         
       
     <div className={"item-list"}>
-      <div className={"card"}>
+      <div className={"card"} key={id}>
         <ul>
           <li>Product Num: {id}</li>
           <li>{title}</li>
           <li>
-            <img src={pictureUrl}></img>
+            <img alt={title} src={pictureUrl}></img>
           </li>
           <li>{description}</li>
           <li>$ {price}</li>
           <li>Available stock: {stock}</li>
-          <ItemCount stock={0} initial={1} onAdd={console.log()} />
+          <ItemCount stock={stock} initial={0} onAdd={(cant)=>onClick(cant)} />
         </ul>
       </div>
     </div>

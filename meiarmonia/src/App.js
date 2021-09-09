@@ -6,10 +6,7 @@ import ItemListContainer from './componentes/ItemListContainer';
 import ItemDetailContainer from './componentes/ItemDetailContainer'
 
 function App() {
-  const onAdd= () => {
-    <button text="agregar producto" />
-    console.log("")
-  }
+ 
     return (
       <BrowserRouter>
       <NavBar />
