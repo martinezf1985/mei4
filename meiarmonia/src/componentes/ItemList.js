@@ -8,6 +8,7 @@ const ItemList = ({ items }) => {
         <div className={"card"} key={item.id} >
           <Item item={item} />
           <ItemCount stock={item.stock} initial={1} onAdd={console.log()} />
+          
         </div>
       ))}
     </div>
