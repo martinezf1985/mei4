@@ -1,36 +1,44 @@
 import React, { useState } from "react";
 import ItemCount from "./ItemCount";
 
-function ItemDetail({ id, title, description, stock, pictureUrl, price }) {
-  const [onAdd, setOnAdd] = useState(0);
+function ItemDetail(props) {
+  const [compra, setCompra] = useState(0);
   const NumberContext = React.createContext();
+  const [terminar, setTerminar] = useState(false);
 
-  const onClick = (cantidad) => {
-    setOnAdd(cantidad );
+  const onAdd = (cantidad) => {
+    setCompra(cantidad);
+    setTerminar(!terminar);
   };
+  console.log('esto tiene el estado', onAdd)
 
   return (
-    <NumberContext.Provider value={onAdd}>
+    <NumberContext.Provider value={compra}>
       <div className={"item-list"}>
-        <div className={"card"} key={id}>
+        <div className={"card"} key={props.id}>
           <ul>
-            <li>Product Num: {id}</li>
-            <li>{title}</li>
+            <li>Product Num: {props.id}</li>
+            <li>{props.title}</li>
             <li>
-              <img alt={title} src={pictureUrl}></img>
+              <img alt={props.title} src={props.pictureUrl}></img>
             </li>
-            <li>{description}</li>
-            <li>$ {price}</li>
-            <li>Available stock: {stock}</li>
-            <ItemCount
-              stock={stock}
-              initial={0}
-              onAdd={(cant) => onClick(cant)}
-            />
+            <li>{props.description}</li>
+            <li>$ {props.price}</li>
+            <li>Available stock: {props.stock}</li>
+            {terminar ? (
+              <button>Finalizar compra</button>
+            ) : (
+              <ItemCount
+                stock={"stock"}
+                numero={1}
+                initial={0}
+                onClick={(cant) => onAdd(cant)}
+              />
+            )}
           </ul>
         </div>
       </div>
-    </NumberContext.Provider>
+    // </NumberContext.Provider>
   );
 }
 

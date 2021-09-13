@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-// const ItemCount = ({ stock, initial, onAdd }) => {
-const ItemCount = ({ stock, initial, onAdd }) => {
-  const [count, setCount] = useState(initial);
-  const[stockProd, setStockProd]=useState(stock);
+
+const ItemCount = (props) => {
+  const [count, setCount] = useState(props.initial);
+  const[stockProd, setStockProd]=useState(props.stock);
   const NumberContext = React.createContext();
 
   const sum = ()=>{
@@ -16,20 +16,21 @@ const ItemCount = ({ stock, initial, onAdd }) => {
       setCount(count - 1);
     }
   }
+  
 
   return (
     <div>
       <NumberContext.Consumer>
-        {(value) => <div>count {count}.</div>}
+        {(value) => <div>count {count}</div>}
       </NumberContext.Consumer>
       <div>
         <div>
-          {count} {onAdd}{" "}
+          {count} {props.onClick}{" "}
         </div>
         {/* <h1>contador: </h1> */}
         <button className="but" onclick={()=> sum()}>+</button>
         <button className="but" onclick={()=> rest()}>-</button>
-        <button className="but" onClick={()=>onAdd(count)}>agregar</button>
+        <button className="but" onClick={()=>props.onClick(count)}>agregar</button>
 
         {/* <button
           className="but"
