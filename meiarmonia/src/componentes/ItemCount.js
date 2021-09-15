@@ -10,6 +10,10 @@ const ItemCount = (props) => {
       setCount(count + 1);
     }
   }
+const handlerAdd=(prod)=>{
+  console.log('CLICK',prod)
+  console.log(count)
+}
 
   const rest=()=>{
     if (count> 1){
@@ -28,9 +32,9 @@ const ItemCount = (props) => {
           {count} {props.onClick}{" "}
         </div>
         {/* <h1>contador: </h1> */}
-        <button className="but" onclick={()=> sum()}>+</button>
-        <button className="but" onclick={()=> rest()}>-</button>
-        <button className="but" onClick={()=>props.onClick(count)}>agregar</button>
+        <button className="but" onClick={()=> sum()}>+</button>
+        <button className="but" onClick={()=> rest()}>-</button>
+        <button className="but" onClick={(prod) =>handlerAdd(props.onAdd) } >agregar</button>
 
         {/* <button
           className="but"

@@ -9,6 +9,7 @@ function ItemDetail(props) {
   const onAdd = (cantidad) => {
     setCompra(cantidad);
     setTerminar(!terminar);
+    console.log('cantidad', cantidad)
   };
   console.log('esto tiene el estado', onAdd)
 
@@ -33,8 +34,11 @@ function ItemDetail(props) {
                 numero={1}
                 initial={0}
                 onClick={(cant) => onAdd(cant)}
+                
               />
+              
             )}
+            
           </ul>
         </div>
       </div>
