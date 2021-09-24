@@ -1,48 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ItemCount from "./ItemCount";
+import { Context } from "./Context";
+import { CarritoProvider } from './CartContext';
 
-function ItemDetail(props) {
+function ItemDetail({ item }) {
   const [compra, setCompra] = useState(0);
-  const NumberContext = React.createContext();
-  const [terminar, setTerminar] = useState(false);
+  const carritoContext = React.createContext();
+  let [terminar, setTerminar] = useState(false);
+  const [context, setContext] = useState(false);
+  const [object, setObject] = useContext(CarritoProvider);
 
-  const onAdd = (cantidad) => {
-    setCompra(cantidad);
+  const onAdd = () => {
+    console.log("onAdd");
+    console.log("context ", context);
+    terminar = context;
     setTerminar(!terminar);
-    console.log('cantidad', cantidad)
+    console.log("cantidad", compra);
   };
-  console.log('esto tiene el estado', onAdd)
+  const handleFinalizar= ()=>{
+    console.log('handleFinalizar')
+    setContext({item:item, quantity:item.stock })
+  }
+
+ 
 
   return (
-    <NumberContext.Provider value={compra}>
+    <carritoContext.Provider value={terminar}>
+       <Context.Provider value={[context, setContext]}>
       <div className={"item-list"}>
-        <div className={"card"} key={props.id}>
+        <div className={"card"} key={item.id}>
           <ul>
-            <li>Product Num: {props.id}</li>
-            <li>{props.title}</li>
+            <li>Product Num: {item.id}</li>
+            <li>{item.title}</li>
             <li>
-              <img alt={props.title} src={props.pictureUrl}></img>
+              <img alt={item.title} src={item.pictureUrl}></img>
             </li>
-            <li>{props.description}</li>
-            <li>$ {props.price}</li>
-            <li>Available stock: {props.stock}</li>
-            {terminar ? (
-              <button>Finalizar compra</button>
+            <li>{item.description}</li>
+            <li>$ {item.price}</li>
+            <li>Available stock: {item.stock}</li>
+
+            {context ? (
+              <button onClick={()=>handleFinalizar()} > Finalizar compra</button>
             ) : (
               <ItemCount
-                stock={"stock"}
-                numero={1}
-                initial={0}
-                onClick={(cant) => onAdd(cant)}
-                
+                stock={item.stock}
+                initial={1}
+                onAdd={item.description}
+                onClick={onAdd}
               />
-              
             )}
-            
           </ul>
         </div>
       </div>
-    // </NumberContext.Provider>
+      //{" "}
+      </Context.Provider>
+    </carritoContext.Provider>
   );
 }
 

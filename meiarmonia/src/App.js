@@ -1,14 +1,13 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import NavBar from '../src/componentes/NavBar'
-import './componentes/Style.css'
-import ItemListContainer from './componentes/ItemListContainer';
+import NavBar from "../src/componentes/NavBar";
+import "./componentes/Style.css";
+import ItemListContainer from "./componentes/ItemListContainer";
 // import ItemCount from './componentes/ItemCount';
-import ItemDetailContainer from './componentes/ItemDetailContainer'
+import ItemDetailContainer from "./componentes/ItemDetailContainer";
 
 function App() {
- 
-    return (
-      <BrowserRouter>
+  return (
+    <BrowserRouter>
       <NavBar />
       <Switch>
         <Route exact path="/">
@@ -19,27 +18,7 @@ function App() {
         </Route>
       </Switch>
     </BrowserRouter>
-    
-      // <div className="App">
-
-      //    <header className="App-header">
- 
-      //     <NavBar/>
-          
-      //    </header>
-
-      //     <section className ='section'>
-      //     <ItemListContainer greeting="Shop"/>
-      //     <ItemDetailContainer/>
-
-      //     </section>
-
-      // </div>
   );
 }
 
-
- export default App
- 
- 
- 
+export default App;

@@ -1,40 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+import { Context } from "./Context";
 
 const ItemCount = (props) => {
+  const [context, setContext] = useContext(Context);
   const [count, setCount] = useState(props.initial);
-  const[stockProd, setStockProd]=useState(props.stock);
-  const NumberContext = React.createContext();
+  const [stockProd, setStockProd] = useState(props.stock);
+  const [number, setNumber] = useState(props.number);
+  
 
-  const sum = ()=>{
-    if (count< stockProd){
+  
+
+  const sum = () => {
+    console.log("sum ", count, " ", stockProd);
+    console.log("number", number);
+    if (count < stockProd) {
       setCount(count + 1);
     }
-  }
-const handlerAdd=(prod)=>{
-  console.log('CLICK',prod)
-  console.log(count)
-}
+  };
 
-  const rest=()=>{
-    if (count> 1){
+  const handlerAdd = (cant) => {
+    // const carritoBorrador = [...carrito];
+    // carritoBorrador.push(products[0]);
+    // setCarrito(carritoBorrador);
+    
+    setContext(true)
+    
+    console.log('handlerAdd');
+  };
+
+  const rest = () => {
+    if (count > 1) {
       setCount(count - 1);
     }
-  }
-  
+  };
 
   return (
     <div>
-      <NumberContext.Consumer>
-        {(value) => <div>count {count}</div>}
-      </NumberContext.Consumer>
+      <div>count {count}</div>
+
       <div>
-        <div>
-          {count} {props.onClick}{" "}
-        </div>
+        
         {/* <h1>contador: </h1> */}
-        <button className="but" onClick={()=> sum()}>+</button>
-        <button className="but" onClick={()=> rest()}>-</button>
-        <button className="but" onClick={(prod) =>handlerAdd(props.onAdd) } >agregar</button>
+        <button className="but" onClick={() => sum()}>
+          +
+        </button>
+        <button className="but" onClick={() => rest()}>
+          -
+        </button>
+        <button className="but" onClick={() => handlerAdd(count)}>
+          agregar
+        </button>
+        {/* <button onClick={() => setContext("New Value")}>
+        Change Context Value
+      </button> */}
+        
 
         {/* <button
           className="but"
