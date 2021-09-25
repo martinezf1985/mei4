@@ -7,9 +7,6 @@ const ItemCount = (props) => {
   const [count, setCount] = useState(props.initial);
   const [stockProd, setStockProd] = useState(props.stock);
   const [number, setNumber] = useState(props.number);
-  
-
-  
 
   const sum = () => {
     console.log("sum ", count, " ", stockProd);
@@ -20,13 +17,9 @@ const ItemCount = (props) => {
   };
 
   const handlerAdd = (cant) => {
-    // const carritoBorrador = [...carrito];
-    // carritoBorrador.push(products[0]);
-    // setCarrito(carritoBorrador);
-    
-    setContext(true)
-    
-    console.log('handlerAdd');
+    setContext({ finalizar: true, cantidad: cant });
+
+    console.log("handlerAdd");
   };
 
   const rest = () => {
@@ -40,45 +33,20 @@ const ItemCount = (props) => {
       <div>count {count}</div>
 
       <div>
-        
         {/* <h1>contador: </h1> */}
-        <button className="but" onClick={() => sum()}>
+        <button className="" onClick={() => sum()}>
           +
         </button>
-        <button className="but" onClick={() => rest()}>
+        <button className="" onClick={() => rest()}>
           -
         </button>
-        <button className="but" onClick={() => handlerAdd(count)}>
+        <button className="" onClick={() => handlerAdd(count)}>
           agregar
         </button>
-        {/* <button onClick={() => setContext("New Value")}>
-        Change Context Value
-      </button> */}
         
-
-        {/* <button
-          className="but"
-          onClick={() => (count < stock ? setCount(count + 1) : "")}
-        >
-          {" "}
-          +{" "}
-        </button>
-        <button
-          className="but"
-          onClick={() => (count >= 1 ? setCount(count - 1) : "")}
-        >
-          {" "}
-          -{" "}
-        </button> */}
       </div>
 
-      {/* <div>
-        <button className="but" onClick={()=>onAdd(count)}>
-          agregar
-          {" "}
-          Agregar{" "}
-        </button>
-      </div> */}
+      
     </div>
   );
 };

@@ -1,32 +1,29 @@
 import React, { useState, useContext } from "react";
 import ItemCount from "./ItemCount";
 import { Context } from "./Context";
-import { CarritoProvider } from './CartContext';
-
+import { CarritoProvider} from "./CartContext";
 function ItemDetail({ item }) {
   const [compra, setCompra] = useState(0);
-  const carritoContext = React.createContext();
-  let [terminar, setTerminar] = useState(false);
-  const [context, setContext] = useState(false);
-  const [object, setObject] = useContext(CarritoProvider);
+
+  const [context, setContext] = useState({ finalizar: false, cantidad: 0 });
+  const [cart, setCart] = useContext(CarritoProvider);
 
   const onAdd = () => {
     console.log("onAdd");
     console.log("context ", context);
-    terminar = context;
-    setTerminar(!terminar);
+
     console.log("cantidad", compra);
   };
-  const handleFinalizar= ()=>{
-    console.log('handleFinalizar')
-    setContext({item:item, quantity:item.stock })
-  }
-
- 
+  const handleFinalizar = () => {
+    console.log("item", item);
+    console.log("context ", context);
+    console.log("handleFinalizar");
+    setCart({ item: item, quantity: context.cantidad });
+  
+  };
 
   return (
-    <carritoContext.Provider value={terminar}>
-       <Context.Provider value={[context, setContext]}>
+    <Context.Provider value={[context, setContext]}>
       <div className={"item-list"}>
         <div className={"card"} key={item.id}>
           <ul>
@@ -39,22 +36,18 @@ function ItemDetail({ item }) {
             <li>$ {item.price}</li>
             <li>Available stock: {item.stock}</li>
 
-            {context ? (
-              <button onClick={()=>handleFinalizar()} > Finalizar compra</button>
+            {context.finalizar ? (
+              <button onClick={() => handleFinalizar()}>
+                {" "}
+                Finalizar compra
+              </button>
             ) : (
-              <ItemCount
-                stock={item.stock}
-                initial={1}
-                onAdd={item.description}
-                onClick={onAdd}
-              />
+              <ItemCount stock={item.stock} initial={1} onClick={onAdd} />
             )}
           </ul>
         </div>
       </div>
-      //{" "}
-      </Context.Provider>
-    </carritoContext.Provider>
+    </Context.Provider>
   );
 }
 

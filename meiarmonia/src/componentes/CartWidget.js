@@ -1,14 +1,15 @@
-import carrito from './imagenes/carrito.jpg'
-import React from 'react'
+import React from "react";
+import { CarritoProvider } from "./CartContext";
+import {useState} from 'react'
+const CartWidget = () => {
+  const [carrito, setCarrito] = useState({ item: null, quantity: 0 });
+  return (
+    <CarritoProvider.Provider value={(carrito, setCarrito)}>
+      <div>
+        <div>{carrito}</div>
+      </div>
+    </CarritoProvider.Provider>
+  );
+};
 
- const CartWidget = () => {
-    return (
-        <div>
-             <img className = 'img ' src ={ carrito   } alt=""/>
-        </div>
-    )
-}
-
-
-export default CartWidget
-
+export default CartWidget;
