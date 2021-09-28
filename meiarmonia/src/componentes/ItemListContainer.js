@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import ItemList from "./ItemList";
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { getData } from '../Firebase';
 
 const itemsToRender = [
   {
@@ -40,10 +42,42 @@ const ItemsListContainer = (props) => {
 
   useEffect(() => {
     new Promise((resolve, reject) => {
-      setTimeout(() => resolve(itemsToRender), 2000);
+      setTimeout(() => resolve(productos), 2000);
     })
       .then((itemsToRender) => setItems(itemsToRender))
       .catch((err) => console.log(err));
+  }, []);
+
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    // useEffect no puede asincronico
+
+    // 2 PIDO LOS DATOS (truco: usar async/await)
+    const getProductos = async () => {
+      // 3 obtener colleccion
+      const productosCollection = collection(getData(), 'productos');
+      console.log('productosCollection ', productosCollection )
+
+      // 4 obtener Snapshot (foto de la lista en ese momento)
+      const productosSnapshot = await getDocs(productosCollection);
+      console.log('productosSnapshot ', productosSnapshot )
+
+      // 5 obtener datos en forma de json con data()
+      const productosList = productosSnapshot.docs.map(doc => ({
+        
+        id: doc.id,
+        ...doc.data()
+      }));
+      console.log('productosList ', productosList )
+      // 6 setear el estado con la lista
+      console.log(productosList);
+      setProductos(productosList);
+    };
+    // segunda parte del truco ejecutar la funcion asincronica
+    getProductos();
+
+    // array vacio, se ejecuta cuando se monta <app />
   }, []);
 
   return (

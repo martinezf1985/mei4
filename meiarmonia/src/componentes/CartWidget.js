@@ -1,14 +1,27 @@
-import React from "react";
-import { CarritoProvider } from "./CartContext";
-import {useState} from 'react'
+import React, { useContext } from "react";
+
+import { useState } from 'react'
+import { CartContext } from './CartContext'
+
+
 const CartWidget = () => {
-  const [carrito, setCarrito] = useState({ item: null, quantity: 0 });
+  const [carrito, setCarrito] = useContext(CartContext);
   return (
-    <CarritoProvider.Provider value={(carrito, setCarrito)}>
-      <div>
-        <div>{carrito}</div>
-      </div>
-    </CarritoProvider.Provider>
+
+
+    <div >
+      {/* {carrito === 0 ? <div>sin elementos</div> :
+        carrito.map((item) => (
+          <div key={item.id}>
+
+            item.name
+
+          </div>
+        ))
+      } */}
+      {carrito}
+    </div>
+
   );
 };
 

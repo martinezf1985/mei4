@@ -5,13 +5,11 @@ import { Context } from "./Context";
 const ItemCount = (props) => {
   const [context, setContext] = useContext(Context);
   const [count, setCount] = useState(props.initial);
-  const [stockProd, setStockProd] = useState(props.stock);
   const [number, setNumber] = useState(props.number);
 
   const sum = () => {
-    console.log("sum ", count, " ", stockProd);
-    console.log("number", number);
-    if (count < stockProd) {
+
+    if (count < props.stock) {
       setCount(count + 1);
     }
   };
@@ -43,10 +41,10 @@ const ItemCount = (props) => {
         <button className="" onClick={() => handlerAdd(count)}>
           agregar
         </button>
-        
+
       </div>
 
-      
+
     </div>
   );
 };

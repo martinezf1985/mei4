@@ -1,6 +1,6 @@
-import React, { createContext, useState } from 'react';
+import { createContext } from 'react';
 
 
 // 1 CREACION DE CONTEXTO SIMPLE VACIO
-export const CarritoProvider = createContext({});
+export const CartContext = createContext();
 

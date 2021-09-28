@@ -1,29 +1,34 @@
 import React, { useState, useContext } from "react";
 import ItemCount from "./ItemCount";
 import { Context } from "./Context";
-import { CarritoProvider} from "./CartContext";
+import { CartContext } from "./CartContext";
+
 function ItemDetail({ item }) {
-  const [compra, setCompra] = useState(0);
+  // const [compra, setCompra] = useState(0);
 
   const [context, setContext] = useState({ finalizar: false, cantidad: 0 });
-  const [cart, setCart] = useContext(CarritoProvider);
+  const [cart, setCart] = useState([]);
+
+
 
   const onAdd = () => {
     console.log("onAdd");
     console.log("context ", context);
 
-    console.log("cantidad", compra);
+    // console.log("cantidad", compra);
   };
   const handleFinalizar = () => {
     console.log("item", item);
     console.log("context ", context);
     console.log("handleFinalizar");
-    setCart({ item: item, quantity: context.cantidad });
-  
+    debugger
+
+
   };
 
   return (
     <Context.Provider value={[context, setContext]}>
+
       <div className={"item-list"}>
         <div className={"card"} key={item.id}>
           <ul>
@@ -37,16 +42,19 @@ function ItemDetail({ item }) {
             <li>Available stock: {item.stock}</li>
 
             {context.finalizar ? (
+
               <button onClick={() => handleFinalizar()}>
                 {" "}
                 Finalizar compra
               </button>
+
             ) : (
               <ItemCount stock={item.stock} initial={1} onClick={onAdd} />
             )}
           </ul>
         </div>
       </div>
+
     </Context.Provider>
   );
 }
