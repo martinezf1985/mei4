@@ -1,45 +1,86 @@
+import CartWidget from "./CartWidget";
+import { FaHome, FaListUl, FaAt } from "react-icons/fa";
+import { FcShop } from "react-icons/fc";
+import { SiAwesomelists } from "react-icons/si";
 
-import { Navbar, Container, Nav, NavDropdown, } from 'react-bootstrap'
-import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import CartWidget from './CartWidget'
+import { Link } from "react-router-dom";
 
+import CategoriesLink from "./CategoriesLink";
+import carritoContext from "../context/CartContext";
+import { useContext } from "react";
 
-
-const NavBar = () => {
+function NavBar() {
+  const { carrito } = useContext(carritoContext);
 
   return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <Link className="navbar-brand" to="/">
+        <FcShop style={{ fontSize: "3rem" }}></FcShop>
+      </Link>
 
-    <div>
-      <Navbar bg="light" expand="lg">
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <Link className="nav-link" to="/">
+              <FaHome />
+              Home
+              <span className="sr-only">(current)</span>
+            </Link>
+          </li>
+          <li className="nav-item dropdown">
+            <Link
+              to=""
+              className="nav-link dropdown-toggle"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <FaListUl /> Categorías
+            </Link>
 
-        <Container>
-          <Navbar.Brand href="#home">MeiEnArmonia</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Contacto</Nav.Link>
-              <NavDropdown title="Productos" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">escencias</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">cremas</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">jabones veganos</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">linea vegetal</NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-          </Navbar.Collapse>
-          <CartWidget />
-        </Container>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <CategoriesLink />
+            </div>
+          </li>
 
-      </Navbar>
+          <li className="nav-item">
+            <Link className="nav-link" to="/contacto">
+              <FaAt /> Contacto
+            </Link>
+          </li>
 
+          <li className="nav-item">
+            <Link className="nav-link" to="/acerca_de">
+              <SiAwesomelists /> Acerca de...
+            </Link>
+          </li>
+        </ul>
 
+        <li className="navbar-nav nav-item">
+          <Link className="nav-link" to="/cart">
+            {carrito.length > 0 && (
+              <span className="badge badge-secondary">{carrito.length}</span>
+            )}
 
-    </div>
-
-
-  )
+            <CartWidget itemsEnCarrito={carrito.lenght} />
+          </Link>
+        </li>
+      </div>
+    </nav>
+  );
 }
 
-export default NavBar
+export default NavBar;

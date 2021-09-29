@@ -1,21 +1,13 @@
-import React, { useState } from "react";
-import ItemDetail from "./ItemDetail";
+import React from "react";
+import Item from "./Item"
 
 
-const ItemList = ({ items }) => {
-  const [object, setObject] = useState([]);
-  return (
-    <div className={"item-list"}>
-      {items.map((item) => (
-        <div className={"card"} key={item.id}>
-
-
-          <ItemDetail item={item} />
-
-
-        </div>
-      ))}
-    </div>
-  );
-};
-export default ItemList;
+export default function ItemList({ productos }) {
+	return (
+		<div className="row row-cols-1 row-cols-md-3">
+			{productos.map((item) => (
+				<Item {...item} key={item.id}></Item>
+			))}
+		</div>
+	)
+}

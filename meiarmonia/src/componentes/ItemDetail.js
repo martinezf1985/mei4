@@ -1,55 +1,46 @@
-import React, { useState, useContext } from "react";
-import ItemCount from "./ItemCount";
-import { Context } from "./Context";
-import { CartContext } from "./CartContext";
-import Cart from "./Cart";
+import React, { useState, useContext } from 'react';
+import ItemCount from './ItemCount';
+import { Link } from 'react-router-dom';
+import carritoContext from '../context/CartContext';
 
-function ItemDetail({ item }) {
-  // const [compra, setCompra] = useState(0);
 
-  const [context, setContext] = useState({ finalizar: false, cantidad: 0 });
-  const [cart, setCart] = useContext(CartContext);
+export default function ItemDetail({ id, title, description, price, pictureUrl, stock }) {
+    const [count, setCount] = useState(1);
+    const { carrito, addItem } = useContext(carritoContext)
 
-  const onAdd = () => {
-    console.log("onAdd");
-    console.log("context ", context);
+    function setContador(valor) {
+        setCount(valor);
+    }
 
-    // console.log("cantidad", compra);
-  };
-  const handleFinalizar = () => {
-    setCart([...cart, item]);
-    console.log("item", item);
-    console.log("context ", context);
-    console.log("handleFinalizar");
-  };
+    const onAdd = (producto, count) => {
+        addItem(count, producto)
+    }
 
-  return (
-    <Context.Provider value={[context, setContext]}>
-      <div className={"item-list"}>
-        <div className={"card"} key={item.id}>
-          <ul>
-            <li>Product Num: {item.id}</li>
-            <li>{item.title}</li>
-            <li>
-              <img alt={item.title} src={item.pictureUrl}></img>
-            </li>
-            <li>{item.description}</li>
-            <li>$ {item.price}</li>
-            <li>Available stock: {item.stock}</li>
+    const style = {
+        width: "20rem"
+    }
 
-            {context.finalizar ? (
-              <button onClick={() => handleFinalizar()}>
-                {" "}
-                Finalizar compra
-              </button>
+    return (
+        <>
+            <div className="card">
+                <img style={style} src={pictureUrl} className="card-img-top p-4" alt={title} />
+                <div className="card-body">
+                    <h5 className="card-title">{title}</h5>
+                    <h5 className="card-title">${price}</h5>
+                    <p className="card-text">{description}</p>
+                </div>
+            </div>
+
+            {carrito.length > 0 ? (
+                <div className="card-footer text-center">
+                    <ItemCount id={id} stock={stock} count={count} setCount={setContador} onAdd={onAdd} producto={{ id, title, price, pictureUrl }} />
+                    <Link type="button" className="btn btn-primary m-2" to="/cart" >Terminar compra</Link>
+                    <Link className="btn btn-primary " to="/" role="button">Volver al Inicio</Link>
+                </div>
             ) : (
-              <ItemCount stock={item.stock} initial={1} onClick={onAdd} />
+                <ItemCount id={id} stock={stock} count={count} setCount={setContador} onAdd={onAdd} producto={{ id, title, price, pictureUrl }} />
             )}
-          </ul>
-        </div>
-      </div>
-    </Context.Provider>
-  );
-}
+        </>
+    );
 
-export default ItemDetail;
+}
