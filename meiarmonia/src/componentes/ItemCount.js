@@ -5,10 +5,10 @@ import { Context } from "./Context";
 const ItemCount = (props) => {
   const [context, setContext] = useContext(Context);
   const [count, setCount] = useState(props.initial);
-  const [number, setNumber] = useState(props.number);
+  
 
   const sum = () => {
-
+    
     if (count < props.stock) {
       setCount(count + 1);
     }

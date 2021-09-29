@@ -42,40 +42,40 @@ const ItemsListContainer = (props) => {
 
   useEffect(() => {
     new Promise((resolve, reject) => {
-      setTimeout(() => resolve(productos), 2000);
+      setTimeout(() => resolve(itemsToRender), 2000);
     })
       .then((itemsToRender) => setItems(itemsToRender))
       .catch((err) => console.log(err));
   }, []);
 
-  const [productos, setProductos] = useState([]);
+  const [itemsToRender, setItemsToRender] = useState([]);
 
   useEffect(() => {
     // useEffect no puede asincronico
 
     // 2 PIDO LOS DATOS (truco: usar async/await)
-    const getProductos = async () => {
+    const getItemsToRender = async () => {
       // 3 obtener colleccion
-      const productosCollection = collection(getData(), 'productos');
-      console.log('productosCollection ', productosCollection )
+      const itemsToRenderCollection = collection(getData(), 'itemsToRender');
+      console.log('itemsToRenderCollection ', itemsToRenderCollection )
 
       // 4 obtener Snapshot (foto de la lista en ese momento)
-      const productosSnapshot = await getDocs(productosCollection);
-      console.log('productosSnapshot ', productosSnapshot )
+      const itemsToRenderSnapshot = await getDocs(itemsToRenderCollection);
+      console.log('itemsToRenderSnapshot ', itemsToRenderSnapshot )
 
       // 5 obtener datos en forma de json con data()
-      const productosList = productosSnapshot.docs.map(doc => ({
+      const itemsToRenderList = itemsToRenderSnapshot.docs.map(doc => ({
         
         id: doc.id,
         ...doc.data()
       }));
-      console.log('productosList ', productosList )
+      console.log('itemsTRenderList ', itemsToRenderList )
       // 6 setear el estado con la lista
-      console.log(productosList);
-      setProductos(productosList);
+      console.log(itemsToRenderList);
+      setItemsToRender(itemsToRenderList);
     };
     // segunda parte del truco ejecutar la funcion asincronica
-    getProductos();
+    getItemsToRender();
 
     // array vacio, se ejecuta cuando se monta <app />
   }, []);
