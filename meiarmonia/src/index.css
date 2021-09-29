@@ -1,17 +1,53 @@
-/* body {
+
+
+body {
+  font-family: "Rubik", sans-serif;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  background-color: rgb(11, 247, 31);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
-body{
-  background-color: blueviolet;
-  
+
+.img{width:  10%;
+    display: block;
+    
+    border-radius: 30px;
+    
+}
+
+.App {
+  text-align: center;
+}
+
+button {
+  width:80px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: dodgerblue;
+  color: whitesmoke;
+  border: none;
+  font-family: inherit;
+}
+
+button:hover {
+  border: 1px solid dodgerblue;
+  background-color: whitesmoke;
+  color: dodgerblue;
+}
+.item-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  border: 1px solid #222;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 10px #888888;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min-content;
+  padding: 20px;
 }

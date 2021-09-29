@@ -8,26 +8,29 @@ export default function Cart() {
   const { carrito, clear, price } = useContext(carritoContext);
   return (
     <>
+      <h1 className="display-4">Carrito de compras</h1>
+      <p className="lead">El total de tu carrito es de: ${price()}</p>
+      <button
+              className="btn btn-danger"
+              onClick={(e) => {
+                e.preventDefault();
+                clear();
+              }}
+            >
+              Vaciar Carrito
+            </button>
       {carrito.length > 0 && (
-        <div className="jumbotron">
-          <h1 className="display-4">Carrito de compras</h1>
-          <p className="lead">El total de tu carrito es de: ${price()}</p>
-          <button
-            className="btn btn-danger"
-            onClick={(e) => {
-              e.preventDefault();
-              clear();
-            }}
-          >
-            Vaciar Carrito
-          </button>
-          <hr className="my-4" />
+        <div className={"item-list"}>
+          <div className="card">
+            
+            
 
-          {carrito.map((item) => (
-            <ItemCart {...item} key={item.id}></ItemCart>
-          ))}
+            {carrito.map((item) => (
+              <ItemCart {...item} key={item.id}></ItemCart>
+            ))}
 
-          <Buyer />
+            <Buyer />
+          </div>
         </div>
       )}
 

@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
+import "./index.css";
 // pages
 import { CarritoProvider } from "./context/CartContext";
 import ItemListContainer from "./componentes/ItemListContainer";
@@ -13,7 +13,7 @@ function App() {
 		<BrowserRouter>
 			<CarritoProvider>
 			<NavBar />
-			<main className="container my-3">
+			<main className="">
 				<Switch>
 
 					<Route exact path="/">

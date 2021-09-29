@@ -8,8 +8,8 @@ export default function ItemCart({ id, title, price, pictureUrl, quantity }) {
     const { removeItem } = useContext(carritoContext)
 
     return (
-        <div className="col mb-4">
-            <div className="card h-50">
+        <div className="col mb-6">
+            
                 <Link to={`/detail/${id}`} className="btn">
                     <div className="card-body">
                         <img src={pictureUrl} width="150px" height="auto" className="img-fluid" alt={title} />
@@ -25,6 +25,6 @@ export default function ItemCart({ id, title, price, pictureUrl, quantity }) {
                 </div>
 
             </div>
-        </div>
+        
     )
 }

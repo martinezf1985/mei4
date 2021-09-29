@@ -14,9 +14,11 @@ export default function Buyer() {
     const { userInfo } = useContext(carritoContext)
 
     return (
+        
         <form>
             {!confirmar && (
                 <>
+                <hr/>
                     <div className="form-row">
                         <div className="col-md-6 mb-3">
                             <label>Nombre</label>
@@ -79,6 +81,7 @@ export default function Buyer() {
             )}
 
         </form>
+        
     );
 };
 

@@ -22,6 +22,8 @@ export default function ItemDetail({ id, title, description, price, pictureUrl, 
 
     return (
         <>
+        <div className={"item-list"}>
+
             <div className="card">
                 <img style={style} src={pictureUrl} className="card-img-top p-4" alt={title} />
                 <div className="card-body">
@@ -29,7 +31,7 @@ export default function ItemDetail({ id, title, description, price, pictureUrl, 
                     <h5 className="card-title">${price}</h5>
                     <p className="card-text">{description}</p>
                 </div>
-            </div>
+            
 
             {carrito.length > 0 ? (
                 <div className="card-footer text-center">
@@ -38,8 +40,12 @@ export default function ItemDetail({ id, title, description, price, pictureUrl, 
                     <Link className="btn btn-primary " to="/" role="button">Volver al Inicio</Link>
                 </div>
             ) : (
+                <div className="card-footer text-center">
                 <ItemCount id={id} stock={stock} count={count} setCount={setContador} onAdd={onAdd} producto={{ id, title, price, pictureUrl }} />
+                </div>
             )}
+            </div>
+            </div>
         </>
     );
 
